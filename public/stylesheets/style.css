@@ -1,0 +1,40 @@
+a {
+  color: #00B7FF;
+}
+
+body {
+  padding: 5%;
+  background-color: black;
+  display: flex;
+}
+
+td {
+  text-align: center;
+}
+
+table {
+  display: flex;
+}
+
+input[type=text], textarea {
+  width: 50px;
+  text-align: center;
+  background-color: inherit;
+  color: inherit;
+  border: none;
+}
+
+input[type=button] {
+  color: inherit;
+}
+
+iframe {
+  height: 100%;
+  width: 100%;
+  color: inherit;
+  background-color: gray;
+}
+
+div {
+  display: flex;
+}

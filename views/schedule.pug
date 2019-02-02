@@ -1,0 +1,78 @@
+doctype html
+
+head
+    title Bulb Controller
+    link(rel="stylesheet", href="https://bootswatch.com/4/lux/bootstrap.min.css")
+    link(rel="stylesheet", type="text/css", href="/stylesheets/style.css")
+    //- script(src="../public/javascripts/schedule.js")
+    script.
+        // TODO this should be a get request
+        var fields = [
+            "Colors",
+            "Beat Divisions",
+            "Flashing",
+            "Color Separation",
+            "Slide Time",
+            "Saturation",
+            "Brightness",
+            "Repetitions"
+        ]
+
+        // TODO this should also be a get request
+        var pattern = []
+
+        function createInputs() {
+            var table = document.getElementById('table')
+            var row1 = table.insertRow(0)
+            row1.insertCell()
+            var row2 = table.insertRow(1)
+            var cell = row2.insertCell(0)
+            var input = document.createElement("button")
+            input.value = input.text = input.innerHTML = "add"
+            input.onclick = function() {
+                // do the scriptyboi
+                var newRow = []
+                for (var i = 0; i < fields.length; i++) {
+                    newRow.push(parseInt(document.getElementById(fields[i].toLowerCase() + "_input").value))
+                }
+                pattern[pattern.length] = newRow
+                refreshPatterns()
+            }
+            cell.appendChild(input)
+            for (var i = 0; i < fields.length; i++) {
+                cell = row1.insertCell(i + 1)
+                cell.innerHTML = fields[i]
+                var cell2 = row2.insertCell(i + 1)
+                var name = fields[i].toLowerCase()
+                input = document.createElement("input")
+                input.type = "text"
+                input.name = input.id = name + "_input"
+                input.value = 0
+                cell2.appendChild(input)
+            }
+            refreshPatterns()
+        }
+
+        function refreshPatterns() {
+            var table = document.getElementById('table')
+            while (table.rows.length > 2) {
+                table.deleteRow(-1)
+            }
+            for (var i = 0; i < pattern.length; i++) {
+                var row = table.insertRow()
+                row.insertCell()
+                for (var j = 0; j < pattern[i].length; j++) {
+                    var cell = row.insertCell()
+                    cell.innerHTML = pattern[i][j]
+                }
+            }
+        }
+    style.
+        input[type=text] {
+            border: inherit;
+            background-color: gray;
+            width: 100%;
+            height: 100%;
+        }
+body(onload="createInputs()")
+    table(id="table")
