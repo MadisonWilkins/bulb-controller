@@ -3,9 +3,16 @@ a {
 }
 
 body {
-  padding: 5%;
   background-color: black;
   display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  position: relative;
+}
+
+div {
+  position: absolute;
+  margin: 10px;
 }
 
 td {
@@ -13,7 +20,7 @@ td {
 }
 
 table {
-  display: flex;
+  width: 100%;
 }
 
 input[type=text], textarea {
@@ -29,12 +36,6 @@ input[type=button] {
 }
 
 iframe {
-  height: 100%;
-  width: 100%;
   color: inherit;
   background-color: gray;
-}
-
-div {
-  display: flex;
 }
