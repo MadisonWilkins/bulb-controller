@@ -34,7 +34,7 @@ table {
 input[type=text], textarea {
   width: 50px;
   text-align: center;
-  background-color: inherit;
+  background-color: gray;
   color: inherit;
   border: none;
 }
