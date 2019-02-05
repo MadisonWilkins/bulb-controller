@@ -18,6 +18,6 @@
     "pug": "2.0.0-beta11",
     "tplink-cloud-api": "^0.3.8",
     "web-audio-api": "^0.2.2",
-    "web-audio-beat-detector": "^7.0.15"
+    "web-audio-beat-detector": "^7.0.27"
   }
 }
