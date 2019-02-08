@@ -24,18 +24,19 @@ div {
 }
 
 td {
-  text-align: center;
+  text-align: left;
 }
 
-table {
-  display: inline;
+table, tr {
+  border: 1px solid greenyellow;
+  border-collapse: collapse;
 }
 
 input[type=text], textarea {
   width: 50px;
   text-align: center;
-  background-color: gray;
-  color: inherit;
+  background-color: black;
+  color: greenyellow;
   border: none;
 }
 
@@ -45,7 +46,6 @@ input[type=button] {
 
 iframe {
   width: 200px;
-  display: inline;
   color: inherit;
   background-color: gray;
 }

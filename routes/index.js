@@ -72,11 +72,16 @@ async function tweakBulbs() {
       continue
     }
     index = (count + separation * i) % divisions
-    tplink.getLB130(devicelist[i]['alias']).setState(1,
-      currentBrightness,
-      colors[index],
-      sat,
-      period);
+    try {
+      tplink.getLB130(devicelist[i]['alias']).setState(1,
+        currentBrightness,
+        colors[index],
+        sat,
+        period);
+    }
+    catch (error) {
+      console.error(devicelist[i]['alias'] + " seems to be offline.")
+    }
   }
 }
 
@@ -87,7 +92,7 @@ async function metronome() {
   var TPLINK_USER = process.argv[2]
   var TPLINK_PASS = process.argv[3]
   var TPLINK_TERM = "TermID";
-  
+
   // log in to cloud, return a connected tplink object
   tplink = await login(TPLINK_USER, TPLINK_PASS, TPLINK_TERM);
 
@@ -131,10 +136,10 @@ async function hypotheticalRecordFunction() {
 
 async function setBPM() {
   // record audio
-  global.navigator.mediaDevices.getUserMedia({audio: true}, stream =>
+  global.navigator.mediaDevices.getUserMedia({ audio: true }, stream =>
     Audio.record(stream, (err, audio) => {
       audio.save('my-record.wav')
-    }).catch(function(error) {
+    }).catch(function (error) {
       console.log(error);
     })
   )
