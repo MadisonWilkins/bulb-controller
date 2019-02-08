@@ -11,16 +11,31 @@ body {
 }
 
 @media only screen and (max-width: 1000px) {
-  div, table, iframe {
+  body, div, table, td, iframe {
+    transform: scale(1);
     width: 100vw;
-    max-width: 100vw;
+    font-size: 60px;
   }
 
-  
+  input[type=text], input[type=submit], button {
+    scale(4);
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    text-align: center;
+  }
+
+  tr {
+    height: 100px;
+  }
 }
+
+
 div {
   margin: 10px;
   display: inline;
+  width: 100%;
+  align: center;
 }
 
 td {
@@ -33,19 +48,13 @@ table, tr {
 }
 
 input[type=text], textarea {
-  width: 50px;
-  text-align: center;
+  text-align: right;
   background-color: black;
   color: greenyellow;
   border: none;
 }
 
-input[type=button] {
-  color: inherit;
-}
-
-iframe {
-  width: 200px;
-  color: inherit;
-  background-color: gray;
+button {
+  height: 100px;
+  padding: 5px;
 }
