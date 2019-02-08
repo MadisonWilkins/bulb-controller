@@ -178,10 +178,13 @@ router.post('/', function (req, res, next) {
   if (req.body.func == "start" || !flash) {
     flash = true
     message = "started server\n"
+    sat = parseInt(req.body.sat);
   }
   else if (req.body.func == "stop") {
     flash = false
     message = "stopped server\n"
+    sat = 0;
+    tweakBulbs();
   }
   // {
   //   "hue":"150",
@@ -200,7 +203,6 @@ router.post('/', function (req, res, next) {
   bpm = parseInt(req.body.bpm)
   beatDivision = 1 / Math.pow(2, parseInt(req.body.beat) - 4)
   brightness = parseInt(req.body.brightness);
-  sat = parseInt(req.body.sat);
   period = Math.floor((60000 * beatDivision) / bpm * parseInt(req.body.slide) / 8)
   if (req.body.Brightness_check) {
     console.log("flashing...")
