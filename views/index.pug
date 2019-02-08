@@ -152,6 +152,8 @@ body(onload="loadControls()")
 				td
 				td
 		br
-		input(align-self="left", name="func", id="func2", value="stop", type="submit")
-		input(name="func", id="func1", value="start", type="submit")
-		input(type="text", id="colorlist", name="colorlist", value="")
+		button(onclick="submitRequest(action='start')") Start
+		button(onclick="submitRequest(action='stop')") Stop
+		//- input(align-self="left", name="func", id="func2", value="stop", type="submit")
+		//- input(name="func", id="func1", value="start", type="submit")
+		//- input(type="text", id="colorlist", name="colorlist", value="")
