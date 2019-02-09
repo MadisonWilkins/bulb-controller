@@ -38,4 +38,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+app.use('/javascripts', express.static('/javascript'))
+
+app.get('/', function(req, res) {
+  res.redirect('index.pug');
+});
+
 module.exports = app;
