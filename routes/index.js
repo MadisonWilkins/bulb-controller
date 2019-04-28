@@ -161,6 +161,12 @@ myEmitter.on('beat', () => {
   }
 });
 
+router.use(function(req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 /* GET home page. */
 router.get('/', function (req, res) {
   res.render('index')
@@ -172,6 +178,7 @@ router.get('/schedule', function (req, res) {
 })
 
 router.post('/', function (req, res, next) {
+  console.log(req)
   var message = ""
   // stores the input
   // {"divisions":"2","hue":"0","separation":"0","bpm":"90","beat":"4"}
