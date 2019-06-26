@@ -29,10 +29,12 @@ var sat = 0;
 var period = 10;
 var colors = []
 var flashNum = 0
+var powerState = 1;
+var colorState = 1;
 const EventEmitter = require('events');
 class MyEmitter extends EventEmitter { }
 const myEmitter = new MyEmitter();
-
+var sleepTimer = Date.now();
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -64,6 +66,9 @@ async function setColors(base, colorList, listit) {
 }
 
 async function tweakBulbs() {
+  if (powerState == 2 && Date.now() > sleepTimer) {
+    await powerSet()
+  }
   var index, currentBrightness
   currentBrightness = brightness * (1 - (count % (1 + flashNum)))
   for (var i = 0; i < devicelist.length; i++) {
@@ -72,11 +77,12 @@ async function tweakBulbs() {
       continue
     }
     index = (count + separation * i) % divisions
+    power = powerState > 0
     try {
-      tplink.getLB130(devicelist[i]['alias']).setState(1,
+      tplink.getLB130(devicelist[i]['alias']).setState(power,
         currentBrightness,
-        colors[index],
-        sat,
+        colors[index] * colorState,
+        sat * colorState,
         period);
     }
     catch (error) {
@@ -151,6 +157,15 @@ async function setBPM() {
   return
 }
 
+async function powerSet() {
+  powerState = (powerState + 1) % 3;
+  if (powerState == 2) {
+    sleepTimer = Date.now() + 10000;
+    console.log(sleepTimer)
+  }
+  console.log(powerState)
+}
+
 myEmitter.on('beat', () => {
   count++;
   tweakBulbs()
@@ -175,6 +190,16 @@ router.get('/', function (req, res) {
 /* GET program page. */
 router.get('/schedule', function (req, res) {
   res.render('schedule')
+})
+
+router.get('/power', function (req, res) {
+  powerSet();
+  res.send("power toggle");
+})
+
+router.get('/color', function (req, res) {
+  colorState = (colorState + 1) % 2;
+  res.send("color toggle")
 })
 
 router.post('/', function (req, res, next) {
