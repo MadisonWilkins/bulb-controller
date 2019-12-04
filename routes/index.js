@@ -158,12 +158,14 @@ async function setBPM() {
 }
 
 async function powerSet() {
+/*
   powerState = (powerState + 1) % 3;
   if (powerState == 2) {
-    sleepTimer = Date.now() + 10000;
+    sleepTimer = Date.now() + (1000*60*30);
     console.log(sleepTimer)
   }
   console.log(powerState)
+*/
 }
 
 myEmitter.on('beat', () => {
