@@ -15,7 +15,7 @@
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
     "music-tempo": "^1.0.3",
-    "pug": "2.0.0-beta11",
+    "pug": "3.0.1",
     "tplink-cloud-api": "^0.3.8",
     "web-audio-api": "^0.2.2",
     "web-audio-beat-detector": "^7.0.27"
